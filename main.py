@@ -1,3 +1,6 @@
+# Без принципов ООП
+
+
 from random import randint
 
 
@@ -98,6 +101,7 @@ main()
 
 
 
+# Согласно принципам ООП
 
 
 from random import randint
@@ -179,3 +183,35 @@ def choice_char_class(char_name: str) -> Character:
                                'или любую другую кнопку, '
                                'чтобы выбрать другого персонажа ').lower()
     return char_class 
+
+
+def start_training(character):
+    """
+    Принимает на вход имя и класс персонажа.
+    Возвращает сообщения о результатах цикла тренировки персонажа.
+    """
+    cmd = None
+    while cmd != 'skip':
+        cmd = input('Введи команду: ')
+        # Замените блок условных операторов на словарь
+        # и вынесите его из цикла. Здесь останется одно условие
+        # принадлежности введённой команды словарю.
+        # В функции print() будет вызываться метод класса,
+        # который соответствует введённой команде.
+        commands = {'attack': character.attack, 'defence': character.defence, 'special': character.special}
+        if cmd in commands.keys():
+            print(commnds[cmd](character))
+    return 'Тренировка окончена.'
+
+
+def main():
+    """Главное сообщение."""
+    print('Приветствую тебя, искатель приключений!')
+    print('Прежде чем начать игру...')
+    char_name = input('...назови себя: ')
+    print(f'Здравствуй, {char_name}! '
+          'Сейчас твоя выносливость — 80, атака — 5 и защита — 10.')
+    print('Ты можешь выбрать один из трёх путей силы:')
+    print('Воитель, Маг, Лекарь')
+    char_class = choice_char_class()
+    print(start_training(char_name, char_class))
